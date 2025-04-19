@@ -28,9 +28,9 @@ with st.sidebar:
 
     ''')
     add_vertical_space(3)
-    st.write('Created by Atul Raj!')
+    st.write('Created by Aman Raj!')
     add_vertical_space(2)
-    st.write('© 2025 @atulshrivastavanj')
+    st.write('© 2025 Aman Raj')
 
 load_dotenv()
 
