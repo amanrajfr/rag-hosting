@@ -103,6 +103,26 @@ GOOGLE_API_KEY=your_google_api_key_here
 > - The `.gitignore` file is already configured to exclude it
 > - Never share your API key publicly
 
+## 🌐 Deployment
+
+Want to host this app online? Check out our **[Deployment Guide](DEPLOYMENT.md)** for detailed instructions on deploying to:
+
+- 🚀 **Streamlit Community Cloud** (Recommended - Free & Easy)
+- 🔧 **Render** (Free tier available)
+- 🚄 **Railway** (Modern platform)
+- 🐳 **Docker** (Self-hosting)
+
+**Quick Deploy to Streamlit Cloud:**
+1. Visit [share.streamlit.io](https://share.streamlit.io)
+2. Sign in with GitHub
+3. Select this repository
+4. Add your `GOOGLE_API_KEY` to secrets
+5. Deploy! 🎉
+
+👉 **[Read Full Deployment Guide →](DEPLOYMENT.md)**
+
+---
+
 ## 🎮 Usage
 
 ### Running the Application
