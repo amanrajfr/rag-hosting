@@ -10,8 +10,11 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI
 import google.generativeai as genai
 
+# Load environment variables
+load_dotenv()
+
 # Google Gemini API Key
-GOOGLE_API_KEY = "AIzaSyDoD-PHvykXRjzZEqUimkyyj7CQUxQS-vU"
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Configure Gemini
 genai.configure(api_key=GOOGLE_API_KEY)
@@ -28,11 +31,9 @@ with st.sidebar:
 
     ''')
     add_vertical_space(3)
-    st.write('Created by Aman Raj!')
+    st.write('Created by PBL GROUP!')
     add_vertical_space(2)
-    st.write('© 2025 Aman Raj')
-
-load_dotenv()
+    st.write('© 2025 PBL group')
 
 def main():
     st.header("RAG Based PDF Reader")
