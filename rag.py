@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
-from langchain.chains.question_answering import load_qa_chain
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -101,9 +102,29 @@ def main():
                             temperature=0,
                         )
                         
-                        chain = load_qa_chain(llm=llm, chain_type="stuff")
+                        # Create prompt template for Q&A
+                        template = """Use the following pieces of context to answer the question at the end. 
+If you don't know the answer, just say that you don't know, don't try to make up an answer.
+
+Context: {context}
+
+Question: {question}
+
+Answer:"""
                         
-                        response = chain.run(input_documents=docs, question=query)
+                        prompt = PromptTemplate(
+                            template=template,
+                            input_variables=["context", "question"]
+                        )
+                        
+                        # Create chain
+                        chain = LLMChain(llm=llm, prompt=prompt)
+                        
+                        # Combine docs into context
+                        context = "\n\n".join([doc.page_content for doc in docs])
+                        
+                        # Get response
+                        response = chain.run(context=context, question=query)
                         
                         # Display response
                         st.write("Answer:")
