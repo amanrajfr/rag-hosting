@@ -14,8 +14,11 @@ import google.generativeai as genai
 # Load environment variables
 load_dotenv()
 
-# Google Gemini API Key
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# Google Gemini API Key - supports both .env (local) and st.secrets (Streamlit Cloud)
+try:
+    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+except Exception:
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Configure Gemini
 genai.configure(api_key=GOOGLE_API_KEY)
