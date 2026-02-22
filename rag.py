@@ -5,7 +5,6 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -120,14 +119,15 @@ Answer:"""
                             input_variables=["context", "question"]
                         )
                         
-                        # Create chain using modern LCEL
-                        chain = prompt | llm | StrOutputParser()
+                        # Create chain using LCEL (modern LangChain)
+                        chain = prompt | llm
                         
                         # Combine docs into context
                         context = "\n\n".join([doc.page_content for doc in docs])
                         
                         # Get response
-                        response = chain.invoke({"context": context, "question": query})
+                        result = chain.invoke({"context": context, "question": query})
+                        response = result.content
                         
                         # Display response
                         st.write("Answer:")

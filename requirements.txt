@@ -3,6 +3,7 @@ PyPDF2
 python-dotenv
 streamlit-extras
 langchain
+langchain-core
 langchain-text-splitters
 langchain-community
 faiss-cpu
